@@ -1,0 +1,69 @@
+﻿@model Patient
+<div class="row">
+    <div class="col-lg-10">
+    <h4>Заполните поля</h4>
+<form asp-controller="Hospital" asp-action="AddPatient" method="post"  >
+    <div class="p-3">
+        <label asp-for="IIN"></label>
+        <input type="number" asp-for="IIN" class="form-control"/>
+        <span asp-validation-for="IIN" class="text-danger text-center" ></span>
+    </div>
+    <div class="p-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" type="text" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger text-center"></span>
+
+    </div>
+    <div class="p-3">
+        <label asp-for="Surname"></label>
+        <input asp-for="Surname" type="text" class="form-control" />
+        <span asp-validation-for="Surname" class="text-danger text-center"></span>
+
+    </div>
+    <div class="p-3">
+        <label asp-for="Patronymic"></label>
+        <input asp-for="Patronymic" type="text" class="form-control" />
+        <span asp-validation-for="Patronymic" class="text-danger text-center"></span>
+
+    </div>
+    <div class="p-3">
+        <label asp-for="StreetId"></label>
+        <select asp-for="StreetId" class="form-control  form-select ">
+            <option selected disabled>Список улиц</option>
+            @foreach (Street str in @ViewBag.AllAddressName)
+            {
+                <option value=@str.Id>@str.Name</option>
+            }
+        </select>
+        <span asp-validation-for="StreetId" class="text-danger text-center"></span>
+
+    </div>
+    <div class="p-3">
+        <label asp-for="HouseNumber"></label>
+        <input asp-for="HouseNumber" type="number" class="form-control" />
+        <span asp-validation-for="HouseNumber" class="text-danger text-center"></span>
+
+    </div>
+    <div class="p-3">
+        <label asp-for="AppartmentNumber"></label>
+        <input asp-for="AppartmentNumber" type="text" class="form-control" />
+        <span asp-validation-for="AppartmentNumber" class="text-danger text-center"></span>
+
+    </div>
+    <div class="p-3">
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" type="number" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger text-center"></span>
+
+    </div>
+    <div class="mt-3 container">
+    <input type="submit" value="Добавить" class="btn btn-primary" />
+        <a asp-action="MainPage" class="btn btn-secondary">Отмена</a>
+    </div>
+
+</form>
+
+</div>
+
+
+    </div>

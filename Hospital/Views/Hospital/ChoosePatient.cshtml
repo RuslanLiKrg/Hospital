@@ -1,0 +1,41 @@
+﻿@model Patient
+@{
+    int iin = 0;
+}
+<div class="text-center">
+    <div class="d-sm-inline-flex ">
+        <div>
+            <input type="radio" name="typeSearch" id="searchIIN" style="visibility:visible" onclick="Do()" />
+            <label for="searchIIN">Искать по ИИН</label>
+            <form asp-controller="Hospital" asp-action="ChoosePatient"  method="post" id="formIIN">
+                <div>
+                    <label></label>
+                    <input type="text" asp-for="@iin" />
+                </div>
+                <input type="submit" value="Искать" />
+            </form>
+
+        </div>
+        <p>ИЛИ</p>
+        <div>
+
+            <input type="radio" name="typeSearch" id="searchFIO" onclick="s" />
+            <label for="searchName">Искать по ФИО</label>
+            <form asp-controller="Hospital" asp-action="ChoosePatient" method="post" id="formFIO">
+                <div>
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" />
+                </div>
+                <input type="submit" />
+            </form>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<script src="~/js/JavaScript.js"></script>
+
+

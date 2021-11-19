@@ -1,0 +1,26 @@
+﻿@model Patient
+@{ ViewBag.Title = "Подробности";}
+<table border="1" class="table table-bordered table-primary table-hover">
+    <thead>
+        <tr>
+            <th>ИИН</th>
+            <th>ФИО</th>
+            <th>Улица</th>
+            <th>№ дома</th>
+            <th>№ квартиры</th>
+            <th>Номер телефона</th>
+
+        </tr>
+    </thead>
+    <tbody>
+       
+        <tr>
+            <td>@Model.IIN</td>
+            <td>@Model.Surname  @Model.Name  @Model.Patronymic</td>
+            <td>@Model.Street.Name</td>
+            <td>@Model.HouseNumber</td>
+            <td>@Model.AppartmentNumber</td>
+            <td>@Model.PhoneNumber</td>
+        </tr>
+    </tbody>
+</table>

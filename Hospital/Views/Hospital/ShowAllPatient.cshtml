@@ -1,0 +1,64 @@
+﻿@model IndexViewModel
+@{
+    ViewBag.Title = "Все пациенты";
+}
+    
+<div class="row p-3">
+    <div class="col-lg-3">
+        <h3>Отфильтровать по: </h3>
+        <form method="get">
+            <div class="form-inline">
+                <label>Фамилии: </label>
+                <input name="surname" value="@Model.FilterViewModel.SelectedSurname" class="form-control" />
+                <label>ИИН: </label>
+                <input name="iin" value="@Model.FilterViewModel.SelectedIIN" class="form-control" />
+
+                <input type="submit" value="Поиск" class="btn btn-outline-dark mt-2" />
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-9 p-2">
+        <h1>Список пациентов</h1>
+        <table patient-table class="" page-action="ShowAllPatient" sort-state-for-surname="@ViewContext.HttpContext.Request.PathAndQueryForSurname()" sort-state-for-iin="@ViewContext.HttpContext.Request.PathAndQueryForIIN()" surname="@Model.FilterViewModel.SelectedSurname" iin="@Model.FilterViewModel.SelectedIIN" patients="@Model.Patients"></table>
+        @if (Model.PageViewModel.HasPreviousPage)
+        {
+            <a asp-action="ShowAllPatient" asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+               asp-route-fio="@(Model.FilterViewModel.SelectedSurname)"
+               asp-route-iin="@(Model.FilterViewModel.SelectedIIN)"
+               asp-route-sortState="@(Model.SortViewModel.Current)"
+               class="btn btn-outline-dark">Назад</a>
+        }
+        @if (Model.PageViewModel.HasNextPage)
+        {
+            <a asp-action="ShowAllPatient" asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+               asp-route-fio="@(Model.FilterViewModel.SelectedSurname)"
+               asp-route-iin="@(Model.FilterViewModel.SelectedIIN)"
+               asp-route-sortState="@(Model.SortViewModel.Current)"
+               class="btn btn-outline-dark">Вперед</a>
+        }
+
+    </div>
+   @*<table class="table table-bordered table-primary table-hover">
+    <tr>
+        <th>
+            <a asp-action="ShowAllPatient" asp-route-sortState="@(Model.SortViewModel.FIOSort)"
+               asp-route-surname="@(Model.FilterViewModel.SelectedSurname)"
+               asp-route-iin="@(Model.FilterViewModel.SelectedIIN)">ФИО</a>
+        </th>
+        <th>
+            <a asp-action="ShowAllPatient" asp-route-sortState="@(Model.SortViewModel.FIOSort)"
+               asp-route-surname="@(Model.FilterViewModel.SelectedSurname)"
+               asp-route-iin="@(Model.FilterViewModel.SelectedIIN)">ИИН</a>
+        </th>
+    </tr>
+    @foreach (Patient p in Model.Patients)
+    {
+        <tr>
+            <td>@p.Surname @p.Name @p.Patronymic</td>
+            <td>@p.IIN</td>
+        </tr>
+    }
+</table>*@
+
+
+</div>

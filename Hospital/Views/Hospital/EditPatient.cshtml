@@ -1,0 +1,61 @@
+﻿@model Patient
+<div class="col-10 w-100 m-auto">
+    <form asp-controller="Hospital" asp-action="EditPatient" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger text-center"></div>
+        <div>
+            <label asp-for="IIN"></label>
+            <input type="number" asp-for="IIN" class="form-control" />
+            <span asp-validation-for="IIN"></span>
+        </div>
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name"></span>
+
+        </div>
+        <div>
+            <label asp-for="Surname"></label>
+            <input asp-for="Surname" type="text" class="form-control" />
+            <span asp-validation-for="Surname"></span>
+
+        </div>
+        <div>
+            <label asp-for="Patronymic"></label>
+            <input asp-for="Patronymic" type="text" class="form-control" />
+            <span asp-validation-for="Patronymic"></span>
+
+        </div>
+        <div>
+            <label asp-for="StreetId"></label>
+            <select asp-for="StreetId" class="form-control">
+                @foreach (Street str in @ViewBag.AllAddressName)
+                {
+                <option value=@str.Id>@str.Name</option>
+                }
+            </select>
+            <span asp-validation-for="StreetId"></span>
+
+        </div>
+        <div>
+            <label asp-for="HouseNumber"></label>
+            <input asp-for="HouseNumber" type="text" class="form-control" />
+            <span asp-validation-for="HouseNumber"></span>
+
+        </div>
+        <div>
+            <label asp-for="AppartmentNumber"></label>
+            <input asp-for="AppartmentNumber" type="text" class="form-control" />
+            <span asp-validation-for="AppartmentNumber"></span>
+
+        </div>
+        <div>
+            <label asp-for="PhoneNumber"></label>
+            <input asp-for="PhoneNumber" type="number" class="form-control" />
+            <span asp-validation-for="PhoneNumber"></span>
+
+        </div>
+        <input type="submit" value="Сохранить" class="btn btn-primary" />
+
+    </form>
+
+</div>

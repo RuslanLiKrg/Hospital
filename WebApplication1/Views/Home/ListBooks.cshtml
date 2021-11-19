@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebApplication1.Models.Phone>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListBooks</title>
+</head>
+<body>
+    <table>
+        <tbody>
+            @foreach (var ph in Model)
+            {
+            <tr>
+                <td> @ph.Name   </td>
+                <td>@ph.Producer</td>
+                <td>   @ph.Price </td>
+                <td><a href="/Home/Buy/@ph.Id">Купить</a></td>
+
+            </tr>
+            }
+        </tbody>
+    </table>>
+</body>
+</html>

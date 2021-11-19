@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <h3>Оформление покупки</h3>
+        <br/>
+        <form action="" method="post"><!--name должны совпадать-->>
+            <input type="text" name="PhoneId" value=" @ViewBag.Id"/>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>ФИО</td>
+                        <td><input type="text" name="FIO"/> </td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="text" name="Email"/></td>
+                    </tr>
+                    <tr>
+                        <td>Adress</td>
+                        <td><input name="Address" type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="Оформить покупку"/></td>
+                </tbody>
+            </table>
+            </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿@model Patient
+@{ 
+    ViewBag.Title = "Удаление пациента";
+}
+
+<div class="border border-1 text-center">
+    <dl class="list-group-horizontal-lg">
+       <dt>ФИО</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+        <dt>ИИН</dt>
+        <dd>@Html.DisplayFor(model => model.IIN)</dd>
+
+    </dl>
+    <div>
+        <form asp-action="Delete" method="post" asp-route-id="@Model.Id">
+            <div class="form-check">
+                <input type="submit" class="btn btn-danger"  value="Удалить" />
+                <a asp-action="MainPage" class="btn btn-primary" >Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>

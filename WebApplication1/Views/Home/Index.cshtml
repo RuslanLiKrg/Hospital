@@ -1,0 +1,39 @@
+﻿@{ 
+    Layout = null; // для представления не используется мастер страница
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <h3>Меню</h3>
+    <br />
+    @{ 
+        int a = ViewBag.Id;
+    }
+    <a href="/Home/InputInfoPatient?id = @a">Заполнить карточку пациента</a>
+    <a href="#">Поиск пацента</a>
+    <table>
+        <thead>
+            <tr>
+                <!--tr строка-->>
+                <td>Название </td>
+                <td>Производитель</td>
+                <td>Цена</td>
+                <td>&nbsp;</td>
+                <td></td>
+
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <a href="/Home/ShowList/@ViewBag.Purchases">Список покупок</a>
+    <p>@ViewData["Hello"]</p>
+    <a href="/Home/Create?id = 3">Добавить новый телефон</a>
+
+</body>
+</html>
