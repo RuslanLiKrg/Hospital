@@ -21,9 +21,18 @@
                         </li>
                     </ul>
                 </div>
+                <div class="p-2 row">                   
+                    <div class="col-2">
+                        <a class="btn btn-primary" asp-action="Logout" asp-controller="Account">Выход</a>
+                    </div>
+                </div>
             </div>
         </nav>
     <div class="container">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-info text-center">@TempData["message"]</div>
+        }
         @RenderBody()
     </div>
 </body>

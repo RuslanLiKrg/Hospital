@@ -49,9 +49,9 @@ namespace Hospital.Models
 
         }
 
-        public void DeletePatient(int? id)
+        public void DeletePatient(Patient patient)
         {
-            hospitalDB.Patients.Remove(hospitalDB.Patients.FirstOrDefault(p =>p.Id == id));
+            hospitalDB.Patients.Remove(patient);
             hospitalDB.SaveChanges();
 
         }

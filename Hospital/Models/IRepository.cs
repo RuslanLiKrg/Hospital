@@ -16,7 +16,7 @@ namespace Hospital.Models
         public Patient GetPatientByID(int? id);
         public Patient GetPatientByFIO(string name);
         public void SavePatient(Patient patient);
-        public void DeletePatient(int? id);
+        public void DeletePatient(Patient patient);
 
 
 

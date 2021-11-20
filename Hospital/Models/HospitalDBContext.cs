@@ -8,7 +8,7 @@ namespace Hospital.Models
 {
     public class HospitalDBContext:DbContext
     {
-        public HospitalDBContext(DbContextOptions options) : base(options)
+        public HospitalDBContext(DbContextOptions<HospitalDBContext> options) : base(options)
         {
         }
 

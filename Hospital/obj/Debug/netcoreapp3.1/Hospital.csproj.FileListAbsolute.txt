@@ -82,3 +82,9 @@ C:\Users\User\source\repos\WebApplication1\Hospital\obj\Debug\netcoreapp3.1\Razo
 C:\Users\User\source\repos\WebApplication1\Hospital\obj\Debug\netcoreapp3.1\Razor\Views\Hospital\EditPatient.cshtml.g.cs
 C:\Users\User\source\repos\WebApplication1\Hospital\obj\Debug\netcoreapp3.1\Razor\Views\Hospital\Delete.cshtml.g.cs
 C:\Users\User\source\repos\WebApplication1\Hospital\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PatientSummary.cshtml.g.cs
+C:\Users\User\source\repos\WebApplication1\Hospital\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\User\source\repos\WebApplication1\Hospital\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\User\source\repos\WebApplication1\Hospital\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\User\source\repos\WebApplication1\Hospital\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\User\source\repos\WebApplication1\Hospital\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\User\source\repos\WebApplication1\Hospital\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs

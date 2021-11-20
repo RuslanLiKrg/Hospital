@@ -3,6 +3,7 @@ using Hospital.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,9 +22,14 @@ namespace Hospital
         {
             config = _config;
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<HospitalDBContext>(optionsAction => optionsAction.UseSqlServer(config["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<AppldentityDbContext>(options =>
+            options.UseSqlServer(config["ConnectionStrings:MyMVCIdentity:ConnectionString"]));
+            /*IdentityRole - ѕредставл€ет роль в системе удостоверений*/
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppldentityDbContext>();
             services.AddTransient<IRepository, Repository>();
             services.AddMvc();
         }
@@ -37,6 +43,8 @@ namespace Hospital
             }
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -53,6 +61,7 @@ namespace Hospital
                     );
             });
             SeedData.EnsureDoctors(app);
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

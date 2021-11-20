@@ -1,5 +1,6 @@
 ﻿using Hospital.Models;
 using Hospital.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,10 +18,12 @@ namespace Hospital.Controllers.HospitalController
         {
             repository = _repository;
         }
+        [Authorize]
         public IActionResult MainPage(string massege)
         {
             return View(massege);
         }
+        [Authorize]
         public IActionResult ShowAllPatient(string iin, string surname,int page = 1, SortState sortState = SortState.NAME_ASC )
         {
             int pageSize = 3;
@@ -108,6 +111,7 @@ namespace Hospital.Controllers.HospitalController
             }
             return View();
         }
+        [Authorize]
         public IActionResult EditPatient(int? id)
         {
             ViewBag.AllAddressName = repository.GetAllStreet;
@@ -121,24 +125,36 @@ namespace Hospital.Controllers.HospitalController
             }
             return NotFound();
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult EditPatient(Patient patient)
         {
-            repository.SavePatient(patient);
-            return RedirectToAction("MainPage");
+            if (ModelState.IsValid)
+            {
+                repository.SavePatient(patient);
+                TempData["message"] = $"Пациент: {patient.Surname} {patient.Name} был изменен";
+                return RedirectToAction("MainPage");
+            }
+            else
+            {
+                ViewBag.AllAddressName = repository.GetAllStreet;
+                return View(patient);
+            }
         }
+        [Authorize]
         public IActionResult AddPatient()
         {
             ViewBag.AllAddressName = repository.GetAllStreet;
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult AddPatient(Patient patient)
         {
             if (ModelState.IsValid)
             {
                 repository.AddPatient(patient);
+                TempData["message"] = $"Пациент: {patient.Surname} {patient.Name} был добавлен";
                 return RedirectToAction("MainPage", "Hospital", new { message = "Пациент добавлен" });
 
             }
@@ -148,6 +164,7 @@ namespace Hospital.Controllers.HospitalController
                 return View();
             }
         }
+        [Authorize]
         [HttpGet]
         [ActionName("Delete")]
         public IActionResult ConfirmDelete(int? id)
@@ -162,6 +179,7 @@ namespace Hospital.Controllers.HospitalController
             }
             return NotFound();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Delete(int? id)
         {
@@ -170,7 +188,8 @@ namespace Hospital.Controllers.HospitalController
                 Patient patient = repository.GetPatientByID(id);
                 if (patient != null)
                 {
-                    repository.DeletePatient(id);
+                    repository.DeletePatient(patient);
+                    TempData["message"] = $"Пациент: {patient.Surname} {patient.Name} был удален";
                     return RedirectToAction("MainPage");
                 }
             }
