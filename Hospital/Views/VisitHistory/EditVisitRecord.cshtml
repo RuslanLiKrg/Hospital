@@ -1,0 +1,48 @@
+﻿@model VisitRecordfForEditViewModel
+@{ 
+    ViewBag.Title = "Редактирование записи посещения";
+}
+<div class="col-10">
+    <h3 class="text-center">Редактировать запись посещения</h3>
+    <form asp-action="EditVisitRecord" method="post">
+        <div class="form-check">
+            <label asp-for="@Model.VisitRecord.Date"></label>
+            <input asp-for="@Model.VisitRecord.Date" type="datetime-local" class="form-control" />
+            <span asp-validation-for="@Model.VisitRecord.Date" class="text-danger"></span>
+        </div>
+
+        <input hidden="hidden" asp-for="@Model.VisitRecord.PatientId" value="@Model.VisitRecord.PatientId" class="form-control" />
+        <input hidden="hidden" asp-for="@Model.VisitRecord.Id" value="0" class="form-control" />
+        <div class="form-check">
+            <label asp-for="@Model.VisitRecord.DoctorId"></label>
+            <input asp-for="@Model.VisitRecord.DoctorId" list="doctors" type="text" class="form-control" />
+            <datalist id="doctors">
+                @foreach (Doctor d in Model.Doctors)
+                {
+                    <option value="@d.Id">@d.Name @d.Surname</option>
+                }
+            </datalist>
+            <span asp-validation-for="@Model.VisitRecord.DoctorId" class="text-danger"></span>
+        </div>
+        <div class="form-check">
+            <label asp-for="@Model.VisitRecord.DiagnozListId"></label>
+            <input asp-for="@Model.VisitRecord.DiagnozListId" list="diagnoses" type="text" class="form-control" />
+            <datalist id="diagnoses" class="" style="width:max-content">
+                @foreach (DiagnozList d in @Model.DiagnozLists)
+                {
+                    <option style="width:max-content" value="@d.Id">@d.Name</option>
+                }
+            </datalist>
+            <span asp-validation-for="@Model.VisitRecord.DiagnozListId" class="text-danger"></span>
+        </div>
+        <div class="form-check">
+            <label asp-for="@Model.VisitRecord.Complaints"></label>
+            <textarea asp-for="@Model.VisitRecord.Complaints" rows="10" cols="20" style="resize:none" class="form-control"></textarea>
+            <span asp-validation-for="@Model.VisitRecord.Complaints" class="text-danger"></span>
+        </div>
+        <div class="form-check">
+            <input class="btn btn-primary" type="submit" value="Добавить" />
+            <a asp-action="MainPage" asp-controller="Home" class="btn btn-primary btn-warning">Отмена</a>
+        </div>
+    </form>
+</div>

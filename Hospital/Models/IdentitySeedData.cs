@@ -15,6 +15,7 @@ namespace Hospital.Models
 
         public static async void EnsurePopulated(IApplicationBuilder app)
         {
+            //Предоставляет API-интерфейсы для управления пользователем в постоянном хранилище.
             UserManager<IdentityUser> userManager = app.ApplicationServices.GetRequiredService<UserManager<IdentityUser>>();
             IdentityUser user = await userManager.FindByIdAsync(adminUser);
             if (user == null)

@@ -27,7 +27,7 @@ namespace Hospital
         {
             services.AddDbContext<HospitalDBContext>(optionsAction => optionsAction.UseSqlServer(config["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<AppldentityDbContext>(options =>
-            options.UseSqlServer(config["ConnectionStrings:MyMVCIdentity:ConnectionString"]));
+            options.UseSqlServer(config["ConnectionStrings:MyMVCIdentity"]));
             /*IdentityRole - ѕредставл€ет роль в системе удостоверений*/
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppldentityDbContext>();
             services.AddTransient<IRepository, Repository>();
@@ -52,9 +52,10 @@ namespace Hospital
                     name: "default",
                     pattern: "{controller=Hospital}/{action=ShowAllPatient}/{page}/{sortState}");
                 endpoints.MapControllerRoute(
-                    name: "default",
+                    name: null,
                     pattern: "{controller=Hospital}/{action=MainPage}/{id?}"
                     );
+               
                 endpoints.MapControllerRoute(
                     name: null,
                     pattern: "{controller}/{action}/{id?}"

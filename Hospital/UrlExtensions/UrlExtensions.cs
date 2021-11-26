@@ -15,11 +15,11 @@ namespace Hospital.UrlExtensions
             SortState sortState;
             if (request.RouteValues.ContainsKey("sortState"))
             {
-                sortState = request.RouteValues["sortState"].ToString() == SortState.NAME_ASC.ToString() ? SortState.NAME_DESC : SortState.NAME_ASC;
+                sortState = request.RouteValues["sortState"].ToString() == SortState.NAME_PATIENT_ASC.ToString() ? SortState.NAME_PATIENT_DESC : SortState.NAME_PATIENT_ASC;
             }
             else
             {
-                sortState = SortState.NAME_DESC;
+                sortState = SortState.NAME_PATIENT_DESC;
             }
 
             return sortState;
@@ -42,7 +42,7 @@ namespace Hospital.UrlExtensions
             {
                 sortState = SortState.IIN_DESC;
             }
-            var s = SortState.NAME_ASC.ToString();
+            var s = SortState.NAME_PATIENT_ASC.ToString();
             return sortState;
         }
     }

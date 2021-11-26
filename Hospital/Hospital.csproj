@@ -21,11 +21,22 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Omu.SampleData" Version="1.0.1" />
     <PackageReference Include="Twitter.Bootstrap" Version="3.0.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Components\" />
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Omu.Awem">
+      <HintPath>D:\Ruslan\asp\MinSetupCore\MinSetupCore\libs\Omu.Awem.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.AwesomeMvc">
+      <HintPath>D:\Ruslan\asp\MinSetupCore\MinSetupCore\libs\Omu.AwesomeMvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

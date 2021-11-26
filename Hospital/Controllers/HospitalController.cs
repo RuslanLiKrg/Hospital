@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Omu.AwesomeMvc;
+using Omu.SampleData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +20,20 @@ namespace Hospital.Controllers.HospitalController
         {
             repository = _repository;
         }
+
         [Authorize]
         public IActionResult MainPage(string massege)
         {
             return View(massege);
         }
+
         [Authorize]
-        public IActionResult ShowAllPatient(string iin, string surname,int page = 1, SortState sortState = SortState.NAME_ASC )
+        public IActionResult ShowAllPatient(string iin, string surname, int page = 1, SortState sortState = SortState.NAME_PATIENT_ASC )
         {
             int pageSize = 3;
             IQueryable<Patient> patients = repository.GetAllPatients;
 
+            //Фильтрация
             if (iin != null)
             {
                 patients = patients.Where(p => p.IIN == iin);
@@ -38,25 +43,7 @@ namespace Hospital.Controllers.HospitalController
                 patients = patients.Where(p => p.Surname.ToLower().Contains(surname.ToLower()));
             }
             //сортировка
-            switch (sortState)
-            {
-                case SortState.NAME_DESC:
-                    patients = patients.OrderByDescending(p => p.Surname);
-                    break;
-                case SortState.IIN_ASC:
-                    patients = patients.OrderBy(p => p.IIN);
-                    break;
-                case SortState.IIN_DESC:
-                    patients = patients.OrderByDescending(p => p.IIN);
-                    break;
-                case SortState.STREET_NAME_ASC:
-                    break;
-                case SortState.STREET_NAME_DESC:
-                    break;
-                default:
-                    patients = patients.OrderBy(p => p.Surname);
-                    break;
-            }
+            patients = repository.SortPatients(sortState, patients);
 
             //пагинация
 

@@ -1,8 +1,8 @@
 ﻿@model IndexViewModel
 @{
     ViewBag.Title = "Все пациенты";
+    int iterNumber = 0;
 }
-    
 <div class="row p-3">
     <div class="col-lg-3">
         <h3>Отфильтровать по: </h3>
@@ -21,6 +21,7 @@
         <h3 class="text-center">Список пациентов</h3>
         <table class="table table-bordered table-primary table-hover col-lg-9">
             <tr>
+                <th>№</th>
                 <th>
                     <a asp-action="ShowAllPatient" asp-route-sortState="@(Model.SortViewModel.FIOSort)"
                        asp-route-surname="@(Model.FilterViewModel.SelectedSurname)"
@@ -38,35 +39,38 @@
             @foreach (Patient p in Model.Patients)
             {
                 <tr>
+                    <td>@(++iterNumber)</td>
                     <td>@p.Surname @p.Name @p.Patronymic</td>
                     <td>@p.IIN</td>
                     <td>
                         <form asp-action="Delete" method="get">
-                            <a asp-action="EditPatient" class="btn btn-warning" asp-route-id="@p.Id">Edit</a>
+                            <a asp-action="EditPatient" class="btn btn-warning" asp-route-id="@p.Id">Редактировать</a>
+                            <a asp-action="ShowAllVisitHistoryByIdPatient" asp-controller="VisitHistory" asp-route-idpatient="@p.Id" class="btn btn-info">История посещений</a>
                             <input type="hidden" name="id" value="@p.Id" />
                             <button type="submit" class="btn btn-danger">Удалить</button>
+
                         </form>
                     </td>
                 </tr>
             }
         </table>
         <div class="align-self-center">
-        @if (Model.PageViewModel.HasPreviousPage)
-        {
-            <a asp-action="ShowAllPatient" asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
-               asp-route-fio="@(Model.FilterViewModel.SelectedSurname)"
-               asp-route-iin="@(Model.FilterViewModel.SelectedIIN)"
-               asp-route-sortState="@(Model.SortViewModel.Current)"
-               class="btn btn-outline-dark">Назад</a>
-        }
-        @if (Model.PageViewModel.HasNextPage)
-        {
-            <a asp-action="ShowAllPatient" asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
-               asp-route-fio="@(Model.FilterViewModel.SelectedSurname)"
-               asp-route-iin="@(Model.FilterViewModel.SelectedIIN)"
-               asp-route-sortState="@(Model.SortViewModel.Current)"
-               class="btn btn-outline-dark">Вперед</a>
-        }
+            @if (Model.PageViewModel.HasPreviousPage)
+            {
+                <a asp-action="ShowAllPatient" asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+                   asp-route-fio="@(Model.FilterViewModel.SelectedSurname)"
+                   asp-route-iin="@(Model.FilterViewModel.SelectedIIN)"
+                   asp-route-sortState="@(Model.SortViewModel.Current)"
+                   class="btn btn-outline-dark">Назад</a>
+            }
+            @if (Model.PageViewModel.HasNextPage)
+            {
+                <a asp-action="ShowAllPatient" asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+                   asp-route-fio="@(Model.FilterViewModel.SelectedSurname)"
+                   asp-route-iin="@(Model.FilterViewModel.SelectedIIN)"
+                   asp-route-sortState="@(Model.SortViewModel.Current)"
+                   class="btn btn-outline-dark">Вперед</a>
+            }
         </div>
 
         <div class="text-center">
@@ -75,8 +79,8 @@
 
 
     </div>
-    </div>
-    @*<div class="col-lg-9 p-2">
+</div>
+@*<div class="col-lg-9 p-2">
         <h1>Список пациентов</h1>
         <table patient-table class="" page-action="ShowAllPatient" sort-state-for-surname="@ViewContext.HttpContext.Request.PathAndQueryForSurname()" sort-state-for-iin="@ViewContext.HttpContext.Request.PathAndQueryForIIN()" surname="@Model.FilterViewModel.SelectedSurname" iin="@Model.FilterViewModel.SelectedIIN" patients="@Model.Patients"></table>
 

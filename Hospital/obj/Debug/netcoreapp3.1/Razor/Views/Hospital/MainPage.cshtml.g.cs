@@ -33,8 +33,22 @@ using Hospital.UrlExtensions;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\User\source\repos\WebApplication1\Hospital\Views\_ViewImports.cshtml"
+using Omu.AwesomeMvc;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\User\source\repos\WebApplication1\Hospital\Views\_ViewImports.cshtml"
+using Omu.Awem.Helpers;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"07420eb0af2716862a9b39dccaf34e896d509209", @"/Views/Hospital/MainPage.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"27dd0a97ce3ef449744a0008ef799982dcb40869", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a8cdc6e9d2720e3e56581ce8aa9b4719d83c4166", @"/Views/_ViewImports.cshtml")]
     public class Views_Hospital_MainPage : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<string>
     {
         #pragma warning disable 1998

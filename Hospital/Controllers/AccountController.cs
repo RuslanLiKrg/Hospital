@@ -13,8 +13,7 @@ namespace Hospital.Controllers
     public class AccountController : Controller
     {
         /*IdentityUser - Представляет пользователя в системе удостоверений*/
-        /* Предоставляет API-интерфейсы для управления пользователем в хранилище сохраняемости.
-*/
+        /* Предоставляет API-интерфейсы для управления пользователем в хранилище сохраняемости.*/
         private UserManager<IdentityUser> userManager;
         /*Предоставляет API для входа пользователя.*/
         private SignInManager<IdentityUser> signInManager;
@@ -56,7 +55,7 @@ namespace Hospital.Controllers
                     }    
                 }
             }
-            ModelState.AddModelError("", "Invalid name or password");
+            ModelState.AddModelError("", "Неверный логин или пароль. Попробуйте еще раз");
             return View(loginModel);
         }
         public async Task<RedirectResult>Logout(string returnUrl = "/")

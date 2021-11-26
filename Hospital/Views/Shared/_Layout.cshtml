@@ -6,28 +6,29 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/css/bootstrap.min.css" />    
     <link rel="stylesheet" asp-href-include="~/css/StyleSheet.css" />
+    <link href="~/css/themes/gui3/AwesomeMvc.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 ">
-            <div class="container navbar-">
-                <a class="navbar-brand" asp-area="" asp-controller="Hospital" asp-action="MainPage">Главная страница</a>
-                <div class="navbar-collapse collapse  d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Hospital" asp-action="AddPatient">Добавить пациента</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Hospital" asp-action="ShowAllPatient">Все пациенты</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="p-2 row">                   
-                    <div class="col-2">
-                        <a class="btn btn-primary" asp-action="Logout" asp-controller="Account">Выход</a>
-                    </div>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 ">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Hospital" asp-action="MainPage">Главная страница</a>
+            <div class="navbar-collapse collapse  d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Hospital" asp-action="AddPatient">Добавить пациента</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Hospital" asp-action="ShowAllPatient">Все пациенты</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="p-2 row">
+                <div class="col-2">
+                    <a class="btn btn-primary" asp-action="Logout" asp-controller="Account">Выход</a>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
     <div class="container">
         @if (TempData["message"] != null)
         {
@@ -35,5 +36,16 @@
         }
         @RenderBody()
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="~/js/AwesomeMvc.js" type="text/javascript"></script>
+    <script src="~/js/awem.js" type="text/javascript"></script>
+    <script src="~/js/utils.js" type="text/javascript"></script>
+
+    @*used in utils.init and sent on all post requests made by awe*@
+    @Html.AntiForgeryToken()
+
+    @*call init after utils.js and validate.js*@
+    @Html.Awe().Init()
+
 </body>
 </html>
