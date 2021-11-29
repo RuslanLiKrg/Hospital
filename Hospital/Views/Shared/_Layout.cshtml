@@ -36,16 +36,5 @@
         }
         @RenderBody()
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-    <script src="~/js/AwesomeMvc.js" type="text/javascript"></script>
-    <script src="~/js/awem.js" type="text/javascript"></script>
-    <script src="~/js/utils.js" type="text/javascript"></script>
-
-    @*used in utils.init and sent on all post requests made by awe*@
-    @Html.AntiForgeryToken()
-
-    @*call init after utils.js and validate.js*@
-    @Html.Awe().Init()
-
 </body>
 </html>

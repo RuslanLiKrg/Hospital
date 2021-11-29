@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FigaecqlJOp/IQ0qUWag2psdL1+5YNPGtTwg7OQoXZ5o8XC9g5Ag+dUQfyReZkGLpprDTRetG+klux/W+ePfpA==",
+  "dgSpecHash": "EPpFch4ysPErlwxvKDRyJdohn7qPkanWaAMhonGah5Rt2k9lx33uvHoIS0Ny9hYjiWxMSzYmqWmdIqcNPOskAQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\source\\repos\\WebApplication1\\Hospital\\Hospital.csproj",
+  "projectFilePath": "C:\\Users\\User\\source\\repos\\HospitalExam\\WebApplication1\\Hospital\\Hospital.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\bootstrap\\3.0.1\\bootstrap.3.0.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
