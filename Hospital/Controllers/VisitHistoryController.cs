@@ -30,7 +30,7 @@ namespace Hospital.Controllers
             VisitsHistoryPatientViewModel viewModel = new VisitsHistoryPatientViewModel
             {
                 VisitHistories = items,
-                PagingInfo = new PageInfoVisitHistoryViewModel { CurrentPage = numberPage, ItemsPerPage = countItemOnOnePage, TotalItems = repository.GetAllPatients.Count() },
+                PagingInfo = new PageInfoVisitHistoryViewModel { CurrentPage = numberPage, ItemsPerPage = countItemOnOnePage, TotalItems = repository.GetAllVisitHistoriesByIdPatient(idPatient).Count() },
                 IdPatient = idPatient,
                 SortVisitRecords = new SortVisitRecordsViewModel(sortState)
             };

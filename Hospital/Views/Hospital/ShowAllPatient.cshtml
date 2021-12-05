@@ -14,6 +14,7 @@
                 <input name="iin" value="@Model.FilterViewModel.SelectedIIN" class="form-control" />
 
                 <input type="submit" value="Поиск" class="btn btn-outline-dark mt-2" />
+                <input type="button" value="Очистить" class="btn btn-warning btn-clear mt-2">
             </div>
         </form>
     </div>
@@ -28,7 +29,7 @@
                        asp-route-iin="@(Model.FilterViewModel.SelectedIIN)">ФИО</a>
                 </th>
                 <th>
-                    <a asp-action="ShowAllPatient" asp-route-sortState="@(Model.SortViewModel.FIOSort)"
+                    <a asp-action="ShowAllPatient" asp-route-sortState="@(Model.SortViewModel.IINSort)"
                        asp-route-surname="@(Model.FilterViewModel.SelectedSurname)"
                        asp-route-iin="@(Model.FilterViewModel.SelectedIIN)">ИИН</a>
                 </th>
@@ -44,7 +45,7 @@
                     <td>@p.IIN</td>
                     <td>
                         <form asp-action="Delete" method="get">
-                            <a asp-action="EditPatient" class="btn btn-warning" asp-route-id="@p.Id">Редактировать</a>
+                            <button type="button" class="btn btn-warning" data-toggle="ajax-modal" data-target="#modalEdit" data-id=@p.Id data-url="@Url.Action("EditPatient", "Hospital")">Редактировать</button>
                             <a asp-action="ShowAllVisitHistoryByIdPatient" asp-controller="VisitHistory" asp-route-idpatient="@p.Id" class="btn btn-info">История посещений</a>
                             <input type="hidden" name="id" value="@p.Id" />
                             <button type="submit" class="btn btn-danger">Удалить</button>
@@ -72,16 +73,12 @@
                    class="btn btn-outline-dark">Вперед</a>
             }
         </div>
+        <div id="PlaceHolderHere"></div>
 
-        <div class="text-center">
-            <a asp-action="AddPatient" class="btn btn-primary">Добавить пациента</a>
+        <div id="add_patient" class="text-center">
+            <div class="myDiv">
+                <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#modalExample" data-url="@Url.Action("AddPatient", "Hospital")">Добавить пациента</button>
+            </div>
         </div>
-
-
     </div>
 </div>
-@*<div class="col-lg-9 p-2">
-        <h1>Список пациентов</h1>
-        <table patient-table class="" page-action="ShowAllPatient" sort-state-for-surname="@ViewContext.HttpContext.Request.PathAndQueryForSurname()" sort-state-for-iin="@ViewContext.HttpContext.Request.PathAndQueryForIIN()" surname="@Model.FilterViewModel.SelectedSurname" iin="@Model.FilterViewModel.SelectedIIN" patients="@Model.Patients"></table>
-
-    </div>*@

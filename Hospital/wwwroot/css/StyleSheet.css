@@ -1,6 +1,69 @@
 ﻿body {
 }
-.input-validation-error{
+.backgroundAcoount {
+    background-image: url('https://governmentciomedia.com/sites/default/files/styles/featured_article_image/public/2021-07/iStock-866433760.jpg?itok=N3qt9oei');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover
+}
+.cntAcount{
+    background-color: aliceblue;
+    width: 35%;
+    height: 45%;
+    position: absolute;
+    top: 200px;
+    right: 100px
+
+}
+.color {
+    background-color: blue
+}
+.input-validation-error {
     border-color: red;
     background-color: #fee;
+}
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden
+}
+.popup:target {
+        opacity: 1;
+        visibility: visible;
+    }
+.popup_container {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+}
+
+.popup_content {
+    background-color: #fff;
+    columns: #000;
+    max-width: 800px;
+    padding: 30px;
+    position: relative;
+}
+
+.popup_close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+}
+
+.popup_title {
+    font-size: 40px;
+    margin: 0px 0px 1em 0px;
 }

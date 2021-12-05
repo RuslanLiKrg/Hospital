@@ -12,7 +12,6 @@ namespace Hospital.Models
         [Required(ErrorMessage = "Пожалуйста введите Ваш ИИН.")]
         [RegularExpression("[0-9]{12,12}", ErrorMessage = "Недопустимый ИИН")]
         [Display(Name = "ИИН")]
-
         public string IIN { get; set; }
         [Required(ErrorMessage = "Пожалуйста введите ваше имя.")]
         [Display(Name = "Имя")]
@@ -44,5 +43,7 @@ namespace Hospital.Models
 
         public List<Doctor> Doctors { get; set; }
         public List<DiagnozList> DiagnozLists { get; set; }
+
+        
     }
 }

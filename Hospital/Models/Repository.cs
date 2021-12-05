@@ -42,13 +42,21 @@ namespace Hospital.Models
 
         public Patient GetPatientByID(int? id)
         {
-            return hospitalDB.Patients.Include(a => a.Street).FirstOrDefault(p => p.Id == id);
+            return hospitalDB.Patients.Include(a => a.Street).FirstOrDefault(p => p.Id == id);             
         }
         public void SavePatient(Patient patient)
         {
-            hospitalDB.Patients.Update(patient);
+            Patient editPatient = hospitalDB.Patients.FirstOrDefault(p => p.Id == patient.Id);
+            editPatient.IIN = patient.IIN;
+            editPatient.Name = patient.Name;
+            editPatient.Surname = patient.Surname;
+            editPatient.Patronymic = patient.Patronymic;
+            editPatient.AppartmentNumber = patient.AppartmentNumber;
+            editPatient.StreetId = patient.StreetId;
+            editPatient.HouseNumber = patient.HouseNumber;
+            editPatient.PhoneNumber = patient.PhoneNumber;
+            hospitalDB.Patients.Update(editPatient);
             hospitalDB.SaveChanges();
-
         }
 
         public void DeletePatient(Patient patient)
@@ -66,6 +74,7 @@ namespace Hospital.Models
 
         public IQueryable<Patient> SortPatients(SortState sortState, IQueryable<Patient> patients)
         {
+            
             switch (sortState)
             {
                 case SortState.NAME_PATIENT_DESC:

@@ -1,62 +1,81 @@
-﻿@model Patient
-<div class="col-10">
-    <h3 class="text-center">Редактировать сведения о пациенте
-    </h3>
-    <form asp-controller="Hospital" asp-action="EditPatient" method="post">
-        <div>
-            <label asp-for="IIN"></label>
-            <input type="number" asp-for="IIN" class="form-control" />
-            <span asp-validation-for="IIN" class="text-danger text-center"></span>
+﻿@model PatientWithStreets
+<div class="modal fade" id="modalEdit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Редактирование формы пациента</h1>
+            </div>
+
+            <div class="modal-body">
+                <div class="col-10">
+                    <h3 class="text-center">
+                        Редактировать сведения о пациенте
+                    </h3>
+                    <form action="EditPatient" >
+                        <div hidden="hidden">
+                            <input asp-for="Patient.Id" value="@Model.Patient.Id" hidden="hidden" />
+                        </div>
+                        <div>
+                            <label asp-for="Patient.IIN"></label>
+                            <input type="number" asp-for="Patient.IIN" class="form-control" />
+                            <span asp-validation-for="Patient.IIN" class="text-danger text-center"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Patient.Name"></label>
+                            <input asp-for="Patient.Name" type="text" class="form-control" />
+                            <span asp-validation-for="Patient.Name" class="text-danger text-center"></span>
+
+                        </div>
+                        <div>
+                            <label asp-for="Patient.Surname"></label>
+                            <input asp-for="Patient.Surname" type="text" class="form-control" />
+                            <span asp-validation-for="Patient.Surname" class="text-danger text-center"></span>
+
+                        </div>
+                        <div>
+                            <label asp-for="Patient.Patronymic"></label>
+                            <input asp-for="Patient.Patronymic" type="text" class="form-control" />
+                            <span asp-validation-for="Patient.Patronymic" class="text-danger text-center"></span>
+
+                        </div>
+                        <div>
+                            <label asp-for="Patient.StreetId"></label>
+                            <select asp-for="Patient.StreetId" class="form-control">
+                                @foreach (Street str in Model.Streets)
+                                {
+                                    <option value=@str.Id>@str.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Patient.StreetId" class="text-danger text-center"></span>
+
+                        </div>
+                        <div>
+                            <label asp-for="Patient.HouseNumber"></label>
+                            <input asp-for="Patient.HouseNumber" type="text" class="form-control" />
+                            <span asp-validation-for="Patient.HouseNumber" class="text-danger text-center"></span>
+
+                        </div>
+                        <div>
+                            <label asp-for="Patient.AppartmentNumber"></label>
+                            <input asp-for="Patient.AppartmentNumber" type="text" class="form-control" />
+                            <span asp-validation-for="Patient.AppartmentNumber" class="text-danger text-center"></span>
+
+                        </div>
+                        <div>
+                            <label asp-for="Patient.PhoneNumber"></label>
+                            <input asp-for="Patient.PhoneNumber" type="number" class="form-control" />
+                            <span asp-validation-for="Patient.PhoneNumber" class="text-danger text-center"></span>
+
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-edit="modal">Редактировать</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                </div>
+            </div>
         </div>
-        <div>
-            <label asp-for="Name"></label>
-            <input asp-for="Name" type="text" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger text-center"></span>
-
-        </div>
-        <div>
-            <label asp-for="Surname"></label>
-            <input asp-for="Surname" type="text" class="form-control" />
-            <span asp-validation-for="Surname" class="text-danger text-center"></span>
-
-        </div>
-        <div>
-            <label asp-for="Patronymic"></label>
-            <input asp-for="Patronymic" type="text" class="form-control" />
-            <span asp-validation-for="Patronymic" class="text-danger text-center"></span>
-
-        </div>
-        <div>
-            <label asp-for="StreetId"></label>
-            <select asp-for="StreetId" class="form-control">
-                @foreach (Street str in @ViewBag.AllAddressName)
-                {
-                <option value=@str.Id>@str.Name</option>
-                }
-            </select>
-            <span asp-validation-for="StreetId" class="text-danger text-center"></span>
-
-        </div>
-        <div>
-            <label asp-for="HouseNumber"></label>
-            <input asp-for="HouseNumber" type="text" class="form-control" />
-            <span asp-validation-for="HouseNumber" class="text-danger text-center"></span>
-
-        </div>
-        <div>
-            <label asp-for="AppartmentNumber"></label>
-            <input asp-for="AppartmentNumber" type="text" class="form-control" />
-            <span asp-validation-for="AppartmentNumber" class="text-danger text-center"></span>
-
-        </div>
-        <div>
-            <label asp-for="PhoneNumber"></label>
-            <input asp-for="PhoneNumber" type="number" class="form-control" />
-            <span asp-validation-for="PhoneNumber" class="text-danger text-center"></span>
-
-        </div>
-        <input type="submit" value="Сохранить" class="btn btn-primary" />
-
-    </form>
-
+    </div>
 </div>

@@ -56,7 +56,8 @@ namespace Hospital.Controllers.HospitalController
                 PageViewModel = new PageViewModel(count, page, pageSize),
                 SortViewModel = new SortViewModel(sortState),
                 FilterViewModel = new FilterViewModel(iin, surname),
-                Patients = items
+                Patients = items,
+                Streets = repository.GetAllStreet
             };
             return View(viewModel);
         }
@@ -101,13 +102,12 @@ namespace Hospital.Controllers.HospitalController
         [Authorize]
         public IActionResult EditPatient(int? id)
         {
-            ViewBag.AllAddressName = repository.GetAllStreet;
             if (id != null)
             {
                 Patient patient = repository.GetPatientByID(id);
                 if (patient != null)
                 {
-                    return View(patient);
+                    return PartialView("EditPatient", new PatientWithStreets { Patient = patient, Streets = repository.GetAllStreet});
                 }
             }
             return NotFound();
@@ -120,19 +120,18 @@ namespace Hospital.Controllers.HospitalController
             {
                 repository.SavePatient(patient);
                 TempData["message"] = $"Пациент: {patient.Surname} {patient.Name} был изменен";
-                return RedirectToAction("MainPage");
+                return RedirectToAction("ShowAllPatient");
             }
             else
             {
-                ViewBag.AllAddressName = repository.GetAllStreet;
                 return View(patient);
             }
         }
         [Authorize]
+        [HttpGet]
         public IActionResult AddPatient()
         {
-            ViewBag.AllAddressName = repository.GetAllStreet;
-            return View();
+            return PartialView("AddPatient", new PatientWithStreets() { Streets = repository.GetAllStreet});/*для него по умолчанию не определяется мастер-страница.*/
         }
         [Authorize]
         [HttpPost]
@@ -142,13 +141,11 @@ namespace Hospital.Controllers.HospitalController
             {
                 repository.AddPatient(patient);
                 TempData["message"] = $"Пациент: {patient.Surname} {patient.Name} был добавлен";
-                return RedirectToAction("MainPage", "Hospital", new { message = "Пациент добавлен" });
-
+                return RedirectToAction("MainPage", "Hospital");
             }
             else
             {
-                ViewBag.AllAddressName = repository.GetAllStreet;
-                return View();
+                return PartialView("AddPatient");
             }
         }
         [Authorize]
